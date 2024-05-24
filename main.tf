@@ -8,15 +8,11 @@ resource "aws_instance" "my" {
     subnet_id="subnet-06bb28a2e5900658e"
     vpc_security_group_ids=["sg-0d6d89655d54e20db"]
     associate_public_ip_address = true
-        provisioner "file" {
-source= "C:/Users/lbhar/Downloads/script.sh"
-destination= "/home/ubuntu/script.sh"
-   }
     connection {
       type        = "ssh"
       host        = self.public_ip
       user        = "ubuntu"
-      private_key = file("C:/Users/lbhar/Downloads/aws.pem")
+      private_key = file("/home/ubuntu/aws.pem")
       timeout     = "4m"
    }
     provisioner "remote-exec" {
